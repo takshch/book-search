@@ -1,1 +1,14 @@
-<Block::Searchbar @onInput={{this.onInput}} />
+<div class='route-search'>
+  <Block::Searchbar @onInput={{this.onInput}} />
+
+  <div class='cards'>
+    {{#each this.items as |item|}}
+      <Block::BookCard
+        @src={{item.volumeInfo.imageLinks.smallThumbnail}}
+        @title={{item.volumeInfo.title}}
+        @publisher={{item.volumeInfo.publisher}}
+        @stars={{item.volumeInfo.averageRating}}
+      />
+    {{/each}}
+  </div>
+</div>

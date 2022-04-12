@@ -1,0 +1,16 @@
+$font-montserrat: 'Montserrat', sans-serif;
+
+@mixin font-montserrat-extra-light {
+  font-family: $font-montserrat;
+  font-weight: 200;
+}
+
+@mixin font-montserrat-medium {
+  font-family: $font-montserrat;
+  font-weight: 500;
+}
+
+@mixin font-montserrat-bold {
+  font-family: $font-montserrat;
+  font-weight: 700;
+}

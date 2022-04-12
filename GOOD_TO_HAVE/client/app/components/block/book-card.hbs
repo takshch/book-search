@@ -1,0 +1,16 @@
+<div class='block-book-card'>
+  <div class='header'>
+    <div class='image-block'>
+      <img src={{@src}} alt='' />
+    </div>
+  </div>
+  <div class='body'>
+    <div class='title'>{{@title}}</div>
+    <div class='publisher'>{{@publisher}}</div>
+    <div class='rating'>
+      {{#if @stars}}
+        <Block::RatingStars @stars={{4}} />
+      {{/if}}
+    </div>
+  </div>
+</div>

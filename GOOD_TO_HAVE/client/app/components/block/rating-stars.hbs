@@ -1,0 +1,9 @@
+<div class='block-rating-stars'>
+  {{#each this.filledStars}}
+    <IconifyIcon @icon='clarity:star-solid' class='star' />
+  {{/each}}
+
+  {{#each this.unfilledStars}}
+    <IconifyIcon @icon='clarity:star-line' class='star' />
+  {{/each}}
+</div>

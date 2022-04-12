@@ -27,6 +27,7 @@
     "@ember/test-helpers": "^2.4.2",
     "@glimmer/component": "^1.0.4",
     "@glimmer/tracking": "^1.0.4",
+    "@iconify/ember": "^1.1.1",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
     "ember-auto-import": "^2.0.2",
@@ -63,6 +64,7 @@
     "qunit": "^2.16.0",
     "qunit-dom": "^1.6.0",
     "sass": "^1.50.0",
+    "tracked-toolbox": "^1.2.3",
     "webpack": "^5.72.0"
   },
   "engines": {
@@ -71,5 +73,7 @@
   "ember": {
     "edition": "octane"
   },
-  "dependencies": {}
+  "dependencies": {
+    "lodash.debounce": "^4.0.8"
+  }
 }
