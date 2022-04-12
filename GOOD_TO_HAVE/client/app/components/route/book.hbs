@@ -1,3 +1,9 @@
 <div class='route-book'>
-
+  {{#if @model.isBusy}}
+    Loading...
+  {{else}}
+    <div class='book'>
+      <Block::Book @book={{@model.data}} />
+    </div>
+  {{/if}}
 </div>

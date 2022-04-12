@@ -1,0 +1,47 @@
+{{#if @book}}
+  <div class='block-book'>
+    <div class='header'>
+      <div class='thumbnail'>
+        <div class='image-wrapper'>
+          <img src={{@book.thumbnail}} alt={{@book.title}} />
+        </div>
+        {{#if @book.averageRating}}
+          <div class='rating'>
+            <Block::RatingStars @stars={{@book.averageRating}} />
+          </div>
+        {{/if}}
+      </div>
+      <div class='text'>
+        <div class='title'>{{@book.title}}</div>
+
+        {{#if @book.subtitle}}
+          <div class='subtitle'>{{@book.subtitle}}</div>
+        {{/if}}
+
+        <div class='authors'>
+          Authors : <span>{{this.authors}}</span>
+        </div>
+
+        <div class='publisher'>
+          Published by : <span>{{@book.publisher}}</span>
+        </div>
+
+        <div class='published-date'>
+          Published on : <span>{{@book.publishedDate}}</span>
+        </div>
+
+        <div class='type'>
+          Print Type : <span>{{@book.printType}}</span>
+        </div>
+
+        <div class='language'>
+          Language : <span>{{@book.language}}</span>
+        </div>
+
+      </div>
+    </div>
+    <div class="body">
+      {{@book.description}}
+    </div>
+  </div>
+{{/if}}
