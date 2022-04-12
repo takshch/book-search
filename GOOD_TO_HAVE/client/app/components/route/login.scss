@@ -1,0 +1,20 @@
+.route-login {
+  display: flex;
+  flex-direction: column;
+  justify-self: center;
+  align-items: center;
+
+  > .heading {
+    @include font-montserrat-bold;
+  }
+
+  > .btn {
+    @include font-montserrat-bold;
+    padding: 10px 20px;
+    border-radius: 4px;
+    border: 0;
+    color: #fff;
+    background-color: #1a73e8;
+    cursor: pointer;
+  }
+}
