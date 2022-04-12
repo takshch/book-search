@@ -1,8 +1,17 @@
 .block-searchbar {
+  display: flex;
+  justify-content: center;
   margin: 5px;
   padding: 10px;
+
   > input {
-    border: 1px solid #000;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 4px;
+    font-size: 25px;
+    padding: 10px 13px;
+    border: 1px solid #eee;
+    outline: 0;
     box-shadow: 3px 3px 3px #eee;
   }
 }
