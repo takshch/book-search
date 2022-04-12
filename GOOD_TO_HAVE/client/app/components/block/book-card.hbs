@@ -7,10 +7,10 @@
   <div class='body'>
     <div class='title'>{{@title}}</div>
     <div class='publisher'>{{@publisher}}</div>
-    <div class='rating'>
-      {{#if @stars}}
+    {{#if @stars}}
+      <div class='rating'>
         <Block::RatingStars @stars={{4}} />
-      {{/if}}
-    </div>
+      </div>
+    {{/if}}
   </div>
 </div>

@@ -28,6 +28,7 @@
 
   > .body {
     position: relative;
+    overflow: hidden;
 
     > .title {
       @include font-montserrat-bold;

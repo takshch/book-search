@@ -7,5 +7,10 @@
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
+
+    > .card-wrapper {
+      text-decoration: none;
+      color: unset;
+    }
   }
 }

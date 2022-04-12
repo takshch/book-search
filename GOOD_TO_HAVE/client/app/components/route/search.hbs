@@ -3,12 +3,14 @@
 
   <div class='cards'>
     {{#each this.items as |item|}}
-      <Block::BookCard
-        @src={{item.volumeInfo.imageLinks.smallThumbnail}}
-        @title={{item.volumeInfo.title}}
-        @publisher={{item.volumeInfo.publisher}}
-        @stars={{item.volumeInfo.averageRating}}
-      />
+      <LinkTo @route='book' @model={{item.id}} class="card-wrapper">
+        <Block::BookCard
+          @src={{item.volumeInfo.imageLinks.smallThumbnail}}
+          @title={{item.volumeInfo.title}}
+          @publisher={{item.volumeInfo.publisher}}
+          @stars={{item.volumeInfo.averageRating}}
+        />
+      </LinkTo>
     {{/each}}
   </div>
 </div>
