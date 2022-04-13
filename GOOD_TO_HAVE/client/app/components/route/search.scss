@@ -5,6 +5,7 @@
 
   > .cards {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     gap: 15px;
 
@@ -12,5 +13,14 @@
       text-decoration: none;
       color: unset;
     }
+  }
+
+  > .loading,
+  > .error {
+    @include font-montserrat-medium;
+  }
+
+  > .error {
+    color: red;
   }
 }

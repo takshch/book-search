@@ -1,14 +1,24 @@
-<div class='route-search'>
-  <Block::Searchbar @onInput={{this.onInput}} @placeholder="Harry Potter"/>
+<div class="route-search">
+  <Block::Searchbar @onInput={{this.onInput}} @placeholder="Harry Potter" />
 
-  <div class='cards'>
-    {{#each this.items as |item|}}
-      <LinkTo @route='book' @model={{item.id}} class="card-wrapper">
+  {{#if @model.isBusy}}
+    <div class="loading">
+      Loading...
+    </div>
+  {{else if @model.isError}}
+    <div class="error">
+      {{@model.error}}
+    </div>
+  {{/if}}
+
+  <div class="cards">
+    {{#each @model.books as |book|}}
+      <LinkTo @route="book" @model={{book.id}} class="card-wrapper">
         <Block::BookCard
-          @src={{item.volumeInfo.imageLinks.smallThumbnail}}
-          @title={{item.volumeInfo.title}}
-          @publisher={{item.volumeInfo.publisher}}
-          @stars={{item.volumeInfo.averageRating}}
+          @src={{book.imageLinks.smallThumbnail}}
+          @title={{book.title}}
+          @publisher={{book.publisher}}
+          @stars={{book.averageRating}}
         />
       </LinkTo>
     {{/each}}

@@ -5,18 +5,23 @@ const { assign } = Object;
 
 export default class BookSerializer {
   normalizeResponse(data) {
-    const { volumeInfo } = data;
+    const { volumeInfo, id } = data;
 
-    const normalizedData = pick(volumeInfo, [
-      'title',
-      'subtitle',
-      'authors',
-      'publisher',
-      'publishedDate',
-      'printType',
-      'language',
-      'averageRating',
-    ]);
+    const normalizedData = { id };
+
+    assign(
+      normalizedData,
+      pick(volumeInfo, [
+        'title',
+        'subtitle',
+        'authors',
+        'publisher',
+        'publishedDate',
+        'printType',
+        'language',
+        'averageRating',
+      ])
+    );
 
     {
       const { language } = normalizedData;
@@ -32,8 +37,7 @@ export default class BookSerializer {
 
     const { imageLinks } = volumeInfo;
     if (imageLinks) {
-      const { thumbnail } = imageLinks;
-      assign(normalizedData, { thumbnail });
+      assign(normalizedData, { imageLinks });
     }
 
     return normalizedData;
