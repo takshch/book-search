@@ -4,7 +4,10 @@ import { inject as service } from '@ember/service';
 export default class BookRoute extends Route {
   @service router;
 
-  beforeModel() {
-    this.router.transitionTo('index');
+  beforeModel(transition) {
+    const { id } = transition.to.params;
+    if (!id) {
+      this.router.transitionTo('index');
+    }
   }
 }

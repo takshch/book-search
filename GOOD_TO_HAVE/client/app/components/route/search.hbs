@@ -13,7 +13,7 @@
 
   <div class="cards">
     {{#each @model.books as |book|}}
-      <LinkTo @route="book" @model={{book.id}} class="card-wrapper">
+      <LinkTo @route="book.id" @model={{book.id}} class="card-wrapper">
         <Block::BookCard
           @src={{book.imageLinks.smallThumbnail}}
           @title={{book.title}}
