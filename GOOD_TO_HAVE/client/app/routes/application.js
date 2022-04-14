@@ -5,8 +5,7 @@ import { load } from 'zuglet/utils';
 
 @route()
 export default class ApplicationRoute extends Route {
-  @service
-  store;
+  @service store;
 
   model() {}
 

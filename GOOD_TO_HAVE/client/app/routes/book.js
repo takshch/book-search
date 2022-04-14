@@ -6,12 +6,10 @@ export default class BookRoute extends Route {
   @service router;
 
   async model({ id }) {
-    if (!id) {
-      this.router.transitionTo('index');
-    }
+    const model = this.store.models.create('book', { id });
+    await model.load();
 
-    const model = await this.store.models.create('book', { id });
-    model.load();
+    console.log(model);
 
     return model;
   }
