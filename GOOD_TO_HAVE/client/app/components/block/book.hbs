@@ -1,46 +1,46 @@
 {{#if @book}}
-  <div class='block-book'>
-    <div class='header'>
-      <div class='thumbnail'>
-        <div class='image-wrapper'>
-          <img src={{@book.imageLinks.thumbnail}} alt={{@book.title}} />
+  <div class="block-book">
+    <div class="header">
+      <div class="thumbnail">
+        <div class="image-wrapper">
+          <img src={{@book.imageLinks.thumbnail}} alt={{@book.title}} data-test-image />
         </div>
         {{#if @book.averageRating}}
-          <div class='rating'>
+          <div class="rating" data-test-rating>
             <Block::RatingStars @stars={{@book.averageRating}} />
           </div>
         {{/if}}
       </div>
-      <div class='text'>
-        <div class='title'>{{@book.title}}</div>
+
+      <div class="text">
+        <div class="title" data-test-title>{{@book.title}}</div>
 
         {{#if @book.subtitle}}
-          <div class='subtitle'>{{@book.subtitle}}</div>
+          <div class="subtitle" data-test-subtitle>{{@book.subtitle}}</div>
         {{/if}}
 
-        <div class='authors'>
-          Authors : <span>{{this.authors}}</span>
+        <div class="authors">
+          Authors : <span data-test-authors>{{this.authors}}</span>
         </div>
 
-        <div class='publisher'>
-          Published by : <span>{{@book.publisher}}</span>
+        <div class="publisher">
+          Published by : <span data-test-publisher>{{@book.publisher}}</span>
         </div>
 
-        <div class='published-date'>
-          Published on : <span>{{@book.publishedDate}}</span>
+        <div class="published-date">
+          Published on : <span data-test-published-date>{{@book.publishedDate}}</span>
         </div>
 
-        <div class='type'>
-          Print Type : <span>{{@book.printType}}</span>
+        <div class="type">
+          Print Type : <span data-test-print-type>{{@book.printType}}</span>
         </div>
 
-        <div class='language'>
-          Language : <span>{{@book.language}}</span>
+        <div class="language">
+          Language : <span data-test-language>{{@book.language}}</span>
         </div>
-
       </div>
     </div>
-    <div class="body">
+    <div class="body" data-test-description>
       {{@book.description}}
     </div>
   </div>
