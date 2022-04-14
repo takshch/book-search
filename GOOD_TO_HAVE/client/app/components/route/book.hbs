@@ -1,3 +1,9 @@
+{{#if @model.data}}
+  {{page-title @model.data.title}}
+{{else}}
+  {{page-title "Book"}}
+{{/if}}
+
 <div class="route-book">
   {{#if @model.isBusy}}
     Loading...
