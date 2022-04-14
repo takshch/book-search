@@ -2,8 +2,10 @@ import Model from './model';
 import { tracked } from '@glimmer/tracking';
 import { action } from '@ember/object';
 import { cached } from 'tracked-toolbox';
+import { inject as service } from '@ember/service';
 import debounce from 'lodash.debounce';
 import BooksSerializer from '../serializers/books';
+import { reads } from 'macro-decorators';
 
 const API = 'https://www.googleapis.com/books/v1/volumes';
 const API_KEY = 'AIzaSyAP7RLQ19tsrTmOEQvdQtcAbuYOlJrK0ac';
@@ -11,6 +13,9 @@ const API_KEY = 'AIzaSyAP7RLQ19tsrTmOEQvdQtcAbuYOlJrK0ac';
 const { assign } = Object;
 
 export default class BookSearchModel extends Model {
+  @service store;
+  @reads('store.auth.user.uid') uid;
+
   @tracked isBusy = false;
   @tracked isError = false;
   @tracked error = null;
@@ -41,6 +46,27 @@ export default class BookSearchModel extends Model {
       assign(this, { isError: true, error: e });
     } finally {
       assign(this, { isBusy: false });
+    }
+
+    if (!this.isError) {
+      this.updateSearchesOnBackend();
+    }
+  }
+
+  async updateSearchesOnBackend() {
+    const { uid } = this;
+    if (!uid) return;
+
+    const { FieldValue } = this.store.firebase.firebase.firestore;
+    const data = {
+      searches: FieldValue.arrayUnion(this.searchValue),
+    };
+
+    try {
+      const ref = this.store.doc(`users/${uid}/additional/searches`);
+      await ref.save(data, { merge: true });
+    } catch (e) {
+      console.log('not able to push new searches');
     }
   }
 
