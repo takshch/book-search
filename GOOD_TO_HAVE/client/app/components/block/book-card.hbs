@@ -1,16 +1,16 @@
 <div class="block-book-card">
   <div class="header">
     <div class="image-block">
-      <img src={{@src}} alt={{@title}} />
+      <img src={{@src}} alt={{@title}} data-test-image />
     </div>
   </div>
 
   <div class="body">
-    <div class="title">{{@title}}</div>
-    <div class="publisher">{{@publisher}}</div>
+    <div class="title" data-test-title>{{@title}}</div>
+    <div class="publisher" data-test-publisher>{{@publisher}}</div>
 
     {{#if @stars}}
-      <div class="rating">
+      <div class="rating" data-test-rating>
         <Block::RatingStars @stars={{@stars}} />
       </div>
     {{/if}}
