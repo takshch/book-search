@@ -1,16 +1,22 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
+
+import RouteIndex from './route';
+import RouteSearch from './route/search';
+import RouteBookId from './route/book/id';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<App />} />
+        <Route path="/" element={<RouteIndex />} />
+        <Route path="/search" element={<RouteSearch />} />
+        <Route path="/book" element={<Navigate to="/search" />} />
+        <Route path="/book/:id" element={<RouteBookId />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
