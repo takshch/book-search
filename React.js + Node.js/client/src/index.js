@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom/client';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom';
 
+import App from './App';
 import RouteIndex from './route';
 import RouteSearch from './route/search';
 import RouteBookId from './route/book/id';
@@ -12,10 +13,12 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<RouteIndex />} />
-        <Route path="/search" element={<RouteSearch />} />
-        <Route path="/book" element={<Navigate to="/search" />} />
-        <Route path="/book/:id" element={<RouteBookId />} />
+        <Route path="/" element={<App />}>
+          <Route path="" element={<RouteIndex />} />
+          <Route path="search" element={<RouteSearch />} />
+          <Route path="book" element={<Navigate to="/search" />} />
+          <Route path="book/:id" element={<RouteBookId />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
