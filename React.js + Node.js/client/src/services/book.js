@@ -1,4 +1,5 @@
 import * as BooksSerializer from '../serializers/books';
+import * as BookSerializer from '../serializers/book';
 import axios from 'axios';
 
 const API = 'https://www.googleapis.com/books/v1/volumes';
@@ -12,4 +13,14 @@ export const search = async (searchKeyword) => {
   const { data } = response;
 
   return BooksSerializer.normalizeResponse(data);
+};
+
+export const loadById = async (id) => {
+  if (!id) return;
+
+  const url = `${API}/${id}`;
+  const response = await axios.get(url);
+  const { data } = response;
+
+  return BookSerializer.normalizeResponse(data);
 };

@@ -1,0 +1,64 @@
+.book {
+  display: grid;
+  gap: 20px;
+
+  > .header {
+    display: flex;
+    gap: 20px;
+
+    > .thumbnail {
+      display: grid;
+      gap: 5px;
+
+      > .image-wrapper {
+        width: 200px;
+        height: 150px;
+
+        > img {
+          object-fit: contain;
+          width: 100%;
+          height: 100%;
+        }
+      }
+
+      > .rating {
+        display: flex;
+        justify-content: center;
+        font-size: 1.3em;
+      }
+    }
+
+    > .text {
+      > .title {
+        @include font-montserrat-bold;
+      }
+
+      > .subtitle {
+        @include font-montserrat-medium;
+        font-style: italic;
+        margin-bottom: 5px;
+      }
+
+      > .authors,
+      > .publisher,
+      > .published-date,
+      > .type,
+      > .language {
+        @include font-montserrat-regular;
+
+        > span {
+          @include font-montserrat-medium;
+          font-style: normal;
+        }
+      }
+    }
+  }
+
+  > .body {
+    @include font-montserrat-regular;
+
+    > b {
+      @include font-montserrat-bold;
+    }
+  }
+}
