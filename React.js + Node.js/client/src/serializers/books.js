@@ -1,4 +1,4 @@
-import BookSerializer from "./book";
+import * as BookSerializer from "./book";
 
 export const normalizeResponse = (data) => {
   const { items } = data;

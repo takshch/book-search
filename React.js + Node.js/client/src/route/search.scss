@@ -1,1 +1,26 @@
-.route-search {}
+.route-search {
+  display: grid;
+  gap: 10px;
+  padding: 20px 30px;
+
+  > .cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+
+    > .card-wrapper {
+      text-decoration: none;
+      color: unset;
+    }
+  }
+
+  // > .loading,
+  // > .error {
+  //   @include font-montserrat-medium;
+  // }
+
+  // > .error {
+  //   color: red;
+  // }
+}
