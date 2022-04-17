@@ -1,0 +1,12 @@
+version: 0.0
+os: linux
+files:
+  - source: '/React.js + Node.js/backend'
+    destination: /home/ubuntu/server
+hooks:
+  AfterInstall:
+    - location: /shells/afterInstall.sh
+      timeout: 100
+  ApplicationStart:
+    - location: /shells/applicationStart.sh
+      timeout: 100
