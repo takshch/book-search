@@ -15,6 +15,18 @@ export const search = async (searchKeyword) => {
   return BooksSerializer.normalizeResponse(data);
 };
 
+export const saveSearch = async (search) => {
+  if (!search) return;
+
+  const url = `${process.env.REACT_APP_API}/book/search/save`;
+  const response = await axios.post(url,
+    { search },
+    { withCredentials: true }
+  );
+
+  return response;
+};
+
 export const loadById = async (id) => {
   if (!id) return;
 

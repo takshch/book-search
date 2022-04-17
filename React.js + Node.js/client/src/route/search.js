@@ -15,6 +15,7 @@ const searchBook = debounce(async (searchValue, setBooks) => {
   try {
     const books = await BookService.search(searchValue);
     setBooks(books);
+    await BookService.saveSearch(searchValue);
   } catch (e) {
     console.log(e);
   }

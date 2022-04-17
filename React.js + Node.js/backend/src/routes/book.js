@@ -4,6 +4,6 @@ const BookController = require('../controllers/book');
 
 const router = express.Router();
 
-router.get('/search/save', BookController.save);
+router.post('/search/save', authenticate, BookController.save);
 
 module.exports = router;

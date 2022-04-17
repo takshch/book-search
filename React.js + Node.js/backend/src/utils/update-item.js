@@ -1,8 +1,8 @@
-const { UpdateItemCommand } = require('@aws-sdk/client-dynamodb');
-const { ddbClient } = require('./ddb-client');
+const { UpdateCommand } = require('@aws-sdk/lib-dynamodb');
+const { ddbDocClient } = require('./ddb-doc-client');
 
 const updateItem = async (params) => {
-  const data = await ddbClient.send(new UpdateItemCommand(params));
+  const data = await ddbDocClient.send(new UpdateCommand(params));
   return data;
 };
 
