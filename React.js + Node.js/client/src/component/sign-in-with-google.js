@@ -1,8 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const client_id = '202796636074-gr2d30kdui3dhamqqck4ahq1lg0q0fds.apps.googleusercontent.com';
 
-const loadButton = (element, callback) => {
+const loadButton = (setIsFailedToLoad) => (element, callback) => {
+  if (!window.google) {
+    setIsFailedToLoad(true);
+  }
+
   const { google: { accounts: { id } } } = window;
 
   id.initialize({ client_id, callback });
@@ -10,23 +14,25 @@ const loadButton = (element, callback) => {
   id.renderButton(element,
     { theme: "outline", size: "large" }
   );
-
-  id.prompt();
 };
 
 function SignInWithGoogle({ callback }) {
   const buttonDiv = useRef(null);
+  const [isFailedToLoad, setIsFailedToLoad] = useState(false);
 
   useEffect(() => {
     const { current: element } = buttonDiv;
-
-    window.addEventListener('load', () => {
-      loadButton(element, callback);
-    });
+    setTimeout(() => {
+      loadButton(setIsFailedToLoad)(element, callback);
+    }, 500);
   }, []);
 
   return (
-    <div className="sign-in-with-google" ref={buttonDiv}>
+    <div className="sign-in-with-google">
+      <div ref={buttonDiv}></div>
+      {
+        isFailedToLoad && (<div className="error">Failed to load Google button</div>)
+      }
     </div>
   );
 }

@@ -7,6 +7,7 @@ import App from './App';
 import RouteIndex from './route';
 import RouteSearch from './route/search';
 import RouteBookId from './route/book/id';
+import PrivateRoute from './component/private-route';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,9 +16,23 @@ root.render(
       <Routes>
         <Route path="/" element={<App />}>
           <Route path="" element={<RouteIndex />} />
-          <Route path="search" element={<RouteSearch />} />
-          <Route path="book" element={<Navigate to="/search" />} />
-          <Route path="book/:id" element={<RouteBookId />} />
+          <Route
+            path="search"
+            element={
+              <PrivateRoute>
+                <RouteSearch />
+              </PrivateRoute>
+            }
+          />
+          <Route  path="book" element={<Navigate to="/search" />} />
+          <Route
+            path="book/:id"
+            element={
+              <PrivateRoute>
+                <RouteBookId />
+              </PrivateRoute>
+            }
+          />
         </Route>
       </Routes>
     </BrowserRouter>

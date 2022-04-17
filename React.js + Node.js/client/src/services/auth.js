@@ -1,11 +1,20 @@
 import axios from 'axios';
 
-const API = process.env.REACT_APP_API;
-const SignInAPI = `${API}/session/login`;
+const API_ORIGIN = process.env.REACT_APP_API;
 
-export const handleSignInWithGoogle = async ({ credential }) => {
-  const { status } = await axios.post(SignInAPI, { credential }, {
+const API = {
+  SignIn: `${API_ORIGIN}/session/login`,
+  Authentication: `${API_ORIGIN}/session/authenticate`,
+};
+
+export const SignIn = async ({ credential }) => {
+  const { status } = await axios.post(API.SignIn, { credential }, {
     withCredentials: true
   });
-  console.log(status);
+  return { status };
+};
+
+export const isUserAuthenticated = async () => {
+  const { status } = await axios.get(API.Authentication, { withCredentials: true });
+  return status === 200;
 };
