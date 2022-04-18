@@ -5,9 +5,6 @@ files:
     destination: /home/ubuntu/server
     overwrite: true
 hooks:
-  ApplicationStop:
-    - location: /hooks_scripts/application-stop.sh
-      timeout: 300
   BeforeInstall:
     - location: /hooks_scripts/before-install.sh
       timeout: 300
