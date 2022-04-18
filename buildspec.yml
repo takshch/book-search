@@ -10,3 +10,7 @@ phases:
       - npm -f install
       - echo "Dependencies have been installed"
       - echo "Storing Build Artifact to the Location"
+artifacts:
+  type: zip
+  paths:
+    - '*'
