@@ -5,9 +5,9 @@ files:
     destination: /home/ubuntu/server
     overwrite: true
 hooks:
-  AfterInstall:
-    - location: /shells/afterInstall.sh
-      timeout: 100
+  ApplicationStop:
+    - location: /hooks_scripts/application-stop.sh
+      timeout: 300
   ApplicationStart:
-    - location: /shells/applicationStart.sh
-      timeout: 100
+    - location: /hooks_scripts/application-start.sh
+      timeout: 300
