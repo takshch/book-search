@@ -13,4 +13,4 @@ export NVM_DIR="$HOME/.nvm"
 npm install
 
 # start our node backend
-npm run prod
+sudo npm run prod
