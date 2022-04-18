@@ -2,7 +2,7 @@
 
 sudo chmod -R 777 /home/ubuntu/server
 
-cd home/ubuntu/server
+cd /home/ubuntu/server
 
 #add npm and node to path
 export NVM_DIR="$HOME/.nvm"
