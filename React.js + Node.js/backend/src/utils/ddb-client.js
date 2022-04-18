@@ -6,13 +6,13 @@ const { assign } = Object;
 // Set the AWS Configuration.
 const { region, credentials } = config.get('dynamoDb');
 
-let dbConfig = {
-  region,
-  credentials
-};
+let dbConfig = { region };
 
 if (process.env.NODE_ENV !== 'production') {
-  assign(dbConfig, { endpoint: 'http://localhost:8000' });
+  assign(dbConfig, {
+    credentials,
+    endpoint: 'http://localhost:8000'
+  });
 }
 
 // Create an Amazon DynamoDB service client object.
