@@ -14,6 +14,6 @@ npm install
 
 # start our node backend
 npm run setup:prod
-sudo NODE_ENV=production pm2 -f start src/index.js
+sudo pm2 -f start ecosystem.config.js
 pm2 startup
 pm2 save
