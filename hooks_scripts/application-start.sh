@@ -14,3 +14,4 @@ npm install
 
 # start our node backend
 sudo pm2 start npm --name "Backend" -- run "prod"
+pm2 save
