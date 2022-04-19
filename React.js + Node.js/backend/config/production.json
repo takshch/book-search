@@ -1,4 +1,4 @@
 {
-  "PORT": 80,
-  "Access-Control-Allow-Origin": "http://localhost:3000"
+  "PORT": 4000,
+  "Access-Control-Allow-Origin": "http://44.203.220.216"
 }

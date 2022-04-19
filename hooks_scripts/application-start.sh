@@ -9,12 +9,11 @@ export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # loads nvm bash_completion (node is in path now)
 
-
 # start react.js app
 cd client
 npm install
 npm run build
-pm2 serve build 3000 --spa
+sudo pm2 serve build 80 --spa
 pm2 save
 
 # start our node backend
