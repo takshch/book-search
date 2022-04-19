@@ -13,5 +13,7 @@ export NVM_DIR="$HOME/.nvm"
 npm install
 
 # start our node backend
-sudo npm run prod
+npm run setup:prod
+sudo NODE_ENV=production pm2 -f start src/index.js
+pm2 startup
 pm2 save

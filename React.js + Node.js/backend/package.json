@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "setup": "node src/setup.js",
     "dev": "NODE_ENV=development npm run setup && nodemon src/index.js",
-    "prod": "NODE_ENV=production npm run setup && sudo pm2 -f start src/index.js"
+    "setup:prod": "NODE_ENV=production npm run setup"
   },
   "keywords": [],
   "author": "",
