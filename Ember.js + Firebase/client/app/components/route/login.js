@@ -8,9 +8,9 @@ export default class RouteLoginComponent extends Component {
 
   @action
   async login() {
-    const user = await this.store.auth.methods.popup.google.signIn();
-    if (user?.uid) {
-      this.router.transitionTo('index');
+    const { uid } = await this.store.auth.methods.popup.google.signIn();
+    if (uid) {
+      this.router.transitionTo('/search');
     }
   }
 }
