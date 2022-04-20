@@ -10,9 +10,6 @@ React.js + Node.js was deployed on EC2 but Google OAuth was not working on EC2 i
 
 But Firebase authentication supports IP address origin as authorized origin.
 
-
-## React.js + Node.js
-
 # Ember.js + Firestore
 
 ## Run Ember.js app locally
