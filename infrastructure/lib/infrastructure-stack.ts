@@ -56,10 +56,11 @@ export class InfrastructureStack extends Stack {
     ec2Instance.addUserData(userDataScript);
 
     const codePipeLine = new CodePipeline(this, 'PIPELINE', {
+      selfMutation: false,
       pipelineName: 'BOOK_SEARCH',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('takshch/book-search', 'main'),
-        commands: [],
+        commands: ['npx cdk synth'],
         primaryOutputDirectory: 'infrastructure/cdk.out'
       }),
     });
