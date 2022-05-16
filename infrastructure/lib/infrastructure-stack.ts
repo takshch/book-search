@@ -60,7 +60,7 @@ export class InfrastructureStack extends Stack {
       pipelineName: 'BOOK_SEARCH',
       synth: new ShellStep('Synth', {
         input: CodePipelineSource.gitHub('takshch/book-search', 'main'),
-        commands: ['npx cdk synth'],
+        commands: [],
         primaryOutputDirectory: 'infrastructure/cdk.out'
       }),
     });
