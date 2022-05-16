@@ -30,7 +30,7 @@
         "validateOnSynth": false,
         "assumeRoleArn": "arn:${AWS::Partition}:iam::337452540769:role/cdk-hnb659fds-deploy-role-337452540769-us-east-1",
         "cloudFormationExecutionRoleArn": "arn:${AWS::Partition}:iam::337452540769:role/cdk-hnb659fds-cfn-exec-role-337452540769-us-east-1",
-        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-337452540769-us-east-1/2627b94ff8ff2bd0fec5c6fa1957653b4f190927f78b030c0a86b51cb461dcba.json",
+        "stackTemplateAssetObjectUrl": "s3://cdk-hnb659fds-assets-337452540769-us-east-1/00cd077abacc8375b9da7022bf22e54af85a0ce8818c34b449dce15680fc8dd7.json",
         "requiresBootstrapStackVersion": 6,
         "bootstrapStackVersionSsmParameter": "/cdk-bootstrap/hnb659fds/version",
         "additionalDependencies": [
@@ -140,6 +140,36 @@
           {
             "type": "aws:cdk:logicalId",
             "data": "PIPELINEPipelineBuildSynthCodePipelineActionRoleDefaultPolicy57B452B2"
+          }
+        ],
+        "/InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleE49D75FA"
+          }
+        ],
+        "/InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicy3871AC48"
+          }
+        ],
+        "/InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PIPELINEUpdatePipelineSelfMutationRole43D70F2F"
+          }
+        ],
+        "/InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PIPELINEUpdatePipelineSelfMutationRoleDefaultPolicyC9A6EF8A"
+          }
+        ],
+        "/InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Resource": [
+          {
+            "type": "aws:cdk:logicalId",
+            "data": "PIPELINEUpdatePipelineSelfMutationA717B02A"
           }
         ],
         "/InfrastructureStack/CDKMetadata/Default": [

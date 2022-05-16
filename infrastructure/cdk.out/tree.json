@@ -515,6 +515,12 @@
                                           ]
                                         },
                                         {
+                                          "Fn::GetAtt": [
+                                            "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleE49D75FA",
+                                            "Arn"
+                                          ]
+                                        },
+                                        {
                                           "Fn::Join": [
                                             "",
                                             [
@@ -631,12 +637,45 @@
                                 "configuration": {
                                   "ProjectName": {
                                     "Ref": "PIPELINEPipelineBuildSynthCdkBuildProjectF476BD96"
-                                  }
+                                  },
+                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"b597eab3510dbacb0c42c5267c0ea7bb855dd4394dc8e14490783db34445f1aa\"}]"
                                 },
                                 "runOrder": 1,
                                 "roleArn": {
                                   "Fn::GetAtt": [
                                     "PIPELINEPipelineBuildSynthCodePipelineActionRole1FDA9AAD",
+                                    "Arn"
+                                  ]
+                                }
+                              }
+                            ]
+                          },
+                          {
+                            "name": "UpdatePipeline",
+                            "actions": [
+                              {
+                                "name": "SelfMutate",
+                                "inputArtifacts": [
+                                  {
+                                    "name": "Synth_Output"
+                                  }
+                                ],
+                                "actionTypeId": {
+                                  "category": "Build",
+                                  "version": "1",
+                                  "owner": "AWS",
+                                  "provider": "CodeBuild"
+                                },
+                                "configuration": {
+                                  "ProjectName": {
+                                    "Ref": "PIPELINEUpdatePipelineSelfMutationA717B02A"
+                                  },
+                                  "EnvironmentVariables": "[{\"name\":\"_PROJECT_CONFIG_HASH\",\"type\":\"PLAINTEXT\",\"value\":\"895f20d47e82202a5c96eb483120b5af608386e016d776e0a581914f48cbc630\"}]"
+                                },
+                                "runOrder": 1,
+                                "roleArn": {
+                                  "Fn::GetAtt": [
+                                    "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleE49D75FA",
                                     "Arn"
                                   ]
                                 }
@@ -1154,6 +1193,120 @@
                       "version": "10.1.7"
                     }
                   },
+                  "UpdatePipeline": {
+                    "id": "UpdatePipeline",
+                    "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline",
+                    "children": {
+                      "SelfMutate": {
+                        "id": "SelfMutate",
+                        "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate",
+                        "children": {
+                          "CodePipelineActionRole": {
+                            "id": "CodePipelineActionRole",
+                            "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                                  "aws:cdk:cloudformation:props": {
+                                    "assumeRolePolicyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Effect": "Allow",
+                                          "Principal": {
+                                            "AWS": {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":iam::337452540769:root"
+                                                ]
+                                              ]
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                                  "version": "2.24.1"
+                                }
+                              },
+                              "DefaultPolicy": {
+                                "id": "DefaultPolicy",
+                                "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy",
+                                "children": {
+                                  "Resource": {
+                                    "id": "Resource",
+                                    "path": "InfrastructureStack/PIPELINE/Pipeline/UpdatePipeline/SelfMutate/CodePipelineActionRole/DefaultPolicy/Resource",
+                                    "attributes": {
+                                      "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                      "aws:cdk:cloudformation:props": {
+                                        "policyDocument": {
+                                          "Statement": [
+                                            {
+                                              "Action": [
+                                                "codebuild:BatchGetBuilds",
+                                                "codebuild:StartBuild",
+                                                "codebuild:StopBuild"
+                                              ],
+                                              "Effect": "Allow",
+                                              "Resource": {
+                                                "Fn::GetAtt": [
+                                                  "PIPELINEUpdatePipelineSelfMutationA717B02A",
+                                                  "Arn"
+                                                ]
+                                              }
+                                            }
+                                          ],
+                                          "Version": "2012-10-17"
+                                        },
+                                        "policyName": "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleDefaultPolicy3871AC48",
+                                        "roles": [
+                                          {
+                                            "Ref": "PIPELINEPipelineUpdatePipelineSelfMutateCodePipelineActionRoleE49D75FA"
+                                          }
+                                        ]
+                                      }
+                                    },
+                                    "constructInfo": {
+                                      "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                                      "version": "2.24.1"
+                                    }
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.Policy",
+                                  "version": "2.24.1"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.Role",
+                              "version": "2.24.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "constructs.Construct",
+                          "version": "10.1.7"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "constructs.Construct",
+                      "version": "10.1.7"
+                    }
+                  },
                   "deploy-stage": {
                     "id": "deploy-stage",
                     "path": "InfrastructureStack/PIPELINE/Pipeline/deploy-stage",
@@ -1226,6 +1379,253 @@
                 "constructInfo": {
                   "fqn": "aws-cdk-lib.aws_codepipeline.Pipeline",
                   "version": "2.24.1"
+                }
+              },
+              "UpdatePipeline": {
+                "id": "UpdatePipeline",
+                "path": "InfrastructureStack/PIPELINE/UpdatePipeline",
+                "children": {
+                  "SelfMutation": {
+                    "id": "SelfMutation",
+                    "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation",
+                    "children": {
+                      "Role": {
+                        "id": "Role",
+                        "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role",
+                        "children": {
+                          "Resource": {
+                            "id": "Resource",
+                            "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role/Resource",
+                            "attributes": {
+                              "aws:cdk:cloudformation:type": "AWS::IAM::Role",
+                              "aws:cdk:cloudformation:props": {
+                                "assumeRolePolicyDocument": {
+                                  "Statement": [
+                                    {
+                                      "Action": "sts:AssumeRole",
+                                      "Effect": "Allow",
+                                      "Principal": {
+                                        "Service": "codebuild.amazonaws.com"
+                                      }
+                                    }
+                                  ],
+                                  "Version": "2012-10-17"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.CfnRole",
+                              "version": "2.24.1"
+                            }
+                          },
+                          "DefaultPolicy": {
+                            "id": "DefaultPolicy",
+                            "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role/DefaultPolicy",
+                            "children": {
+                              "Resource": {
+                                "id": "Resource",
+                                "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Role/DefaultPolicy/Resource",
+                                "attributes": {
+                                  "aws:cdk:cloudformation:type": "AWS::IAM::Policy",
+                                  "aws:cdk:cloudformation:props": {
+                                    "policyDocument": {
+                                      "Statement": [
+                                        {
+                                          "Action": [
+                                            "logs:CreateLogGroup",
+                                            "logs:CreateLogStream",
+                                            "logs:PutLogEvents"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":logs:us-east-1:337452540769:log-group:/aws/codebuild/",
+                                                  {
+                                                    "Ref": "PIPELINEUpdatePipelineSelfMutationA717B02A"
+                                                  },
+                                                  ":*"
+                                                ]
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  "arn:",
+                                                  {
+                                                    "Ref": "AWS::Partition"
+                                                  },
+                                                  ":logs:us-east-1:337452540769:log-group:/aws/codebuild/",
+                                                  {
+                                                    "Ref": "PIPELINEUpdatePipelineSelfMutationA717B02A"
+                                                  }
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        },
+                                        {
+                                          "Action": [
+                                            "codebuild:BatchPutCodeCoverages",
+                                            "codebuild:BatchPutTestCases",
+                                            "codebuild:CreateReport",
+                                            "codebuild:CreateReportGroup",
+                                            "codebuild:UpdateReport"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": {
+                                            "Fn::Join": [
+                                              "",
+                                              [
+                                                "arn:",
+                                                {
+                                                  "Ref": "AWS::Partition"
+                                                },
+                                                ":codebuild:us-east-1:337452540769:report-group/",
+                                                {
+                                                  "Ref": "PIPELINEUpdatePipelineSelfMutationA717B02A"
+                                                },
+                                                "-*"
+                                              ]
+                                            ]
+                                          }
+                                        },
+                                        {
+                                          "Action": "sts:AssumeRole",
+                                          "Condition": {
+                                            "ForAnyValue:StringEquals": {
+                                              "iam:ResourceTag/aws-cdk:bootstrap-role": [
+                                                "image-publishing",
+                                                "file-publishing",
+                                                "deploy"
+                                              ]
+                                            }
+                                          },
+                                          "Effect": "Allow",
+                                          "Resource": "arn:*:iam::337452540769:role/*"
+                                        },
+                                        {
+                                          "Action": [
+                                            "cloudformation:DescribeStacks",
+                                            "s3:ListBucket"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": "*"
+                                        },
+                                        {
+                                          "Action": [
+                                            "s3:GetBucket*",
+                                            "s3:GetObject*",
+                                            "s3:List*"
+                                          ],
+                                          "Effect": "Allow",
+                                          "Resource": [
+                                            {
+                                              "Fn::GetAtt": [
+                                                "PIPELINEPipelineArtifactsBucketB837BDEA",
+                                                "Arn"
+                                              ]
+                                            },
+                                            {
+                                              "Fn::Join": [
+                                                "",
+                                                [
+                                                  {
+                                                    "Fn::GetAtt": [
+                                                      "PIPELINEPipelineArtifactsBucketB837BDEA",
+                                                      "Arn"
+                                                    ]
+                                                  },
+                                                  "/*"
+                                                ]
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ],
+                                      "Version": "2012-10-17"
+                                    },
+                                    "policyName": "PIPELINEUpdatePipelineSelfMutationRoleDefaultPolicyC9A6EF8A",
+                                    "roles": [
+                                      {
+                                        "Ref": "PIPELINEUpdatePipelineSelfMutationRole43D70F2F"
+                                      }
+                                    ]
+                                  }
+                                },
+                                "constructInfo": {
+                                  "fqn": "aws-cdk-lib.aws_iam.CfnPolicy",
+                                  "version": "2.24.1"
+                                }
+                              }
+                            },
+                            "constructInfo": {
+                              "fqn": "aws-cdk-lib.aws_iam.Policy",
+                              "version": "2.24.1"
+                            }
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_iam.Role",
+                          "version": "2.24.1"
+                        }
+                      },
+                      "Resource": {
+                        "id": "Resource",
+                        "path": "InfrastructureStack/PIPELINE/UpdatePipeline/SelfMutation/Resource",
+                        "attributes": {
+                          "aws:cdk:cloudformation:type": "AWS::CodeBuild::Project",
+                          "aws:cdk:cloudformation:props": {
+                            "artifacts": {
+                              "type": "CODEPIPELINE"
+                            },
+                            "environment": {
+                              "type": "LINUX_CONTAINER",
+                              "image": "aws/codebuild/standard:5.0",
+                              "imagePullCredentialsType": "CODEBUILD",
+                              "privilegedMode": false,
+                              "computeType": "BUILD_GENERAL1_SMALL"
+                            },
+                            "serviceRole": {
+                              "Fn::GetAtt": [
+                                "PIPELINEUpdatePipelineSelfMutationRole43D70F2F",
+                                "Arn"
+                              ]
+                            },
+                            "source": {
+                              "type": "CODEPIPELINE",
+                              "buildSpec": "{\n  \"version\": \"0.2\",\n  \"phases\": {\n    \"install\": {\n      \"commands\": [\n        \"npm install -g aws-cdk@2\"\n      ]\n    },\n    \"build\": {\n      \"commands\": [\n        \"cdk -a . deploy InfrastructureStack --require-approval=never --verbose\"\n      ]\n    }\n  }\n}"
+                            },
+                            "cache": {
+                              "type": "NO_CACHE"
+                            },
+                            "description": "Pipeline step InfrastructureStack/Pipeline/UpdatePipeline/SelfMutate",
+                            "encryptionKey": "alias/aws/s3",
+                            "name": "BOOK_SEARCH-selfupdate"
+                          }
+                        },
+                        "constructInfo": {
+                          "fqn": "aws-cdk-lib.aws_codebuild.CfnProject",
+                          "version": "2.24.1"
+                        }
+                      }
+                    },
+                    "constructInfo": {
+                      "fqn": "aws-cdk-lib.aws_codebuild.PipelineProject",
+                      "version": "2.24.1"
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "constructs.Construct",
+                  "version": "10.1.7"
                 }
               }
             },
