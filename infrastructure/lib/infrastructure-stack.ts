@@ -1,10 +1,14 @@
-import { Stack, StackProps } from 'aws-cdk-lib';
+import { SecretValue, Stack, StackProps } from 'aws-cdk-lib';
 import { Construct } from 'constructs';
 import { CodePipeline, CodePipelineSource, ShellStep } from 'aws-cdk-lib/pipelines';
 import { CodeDeployStage } from './stages/codedeploy';
 import { readFileSync } from 'fs';
 import * as ec2 from 'aws-cdk-lib/aws-ec2';
 import * as iam from 'aws-cdk-lib/aws-iam';
+import { Artifact, Pipeline } from 'aws-cdk-lib/aws-codepipeline';
+import { CodeDeployServerDeployAction, GitHubSourceAction } from 'aws-cdk-lib/aws-codepipeline-actions';
+import { InstanceTagSet, ServerApplication, ServerDeploymentConfig, ServerDeploymentGroup } from 'aws-cdk-lib/aws-codedeploy';
+import { EC2_TAG_NAME, EC2_TAG_VALUE } from '../bin/infrastructure';
 
 export class InfrastructureStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
@@ -55,17 +59,51 @@ export class InfrastructureStack extends Stack {
     const userDataScript = readFileSync('./lib/userData.sh', 'utf8');
     ec2Instance.addUserData(userDataScript);
 
-    const codePipeLine = new CodePipeline(this, 'PIPELINE', {
-      selfMutation: false,
-      pipelineName: 'BOOK_SEARCH',
-      synth: new ShellStep('Synth', {
-        input: CodePipelineSource.gitHub('takshch/book-search', 'main'),
-        commands: [],
-        primaryOutputDirectory: 'infrastructure/cdk.out'
-      }),
+    const app = new ServerApplication(this, 'codedeploy-app', {
+      applicationName: 'book-search-cd',
     });
 
-    const deployStage = new CodeDeployStage(this, 'deploy-stage');
-    codePipeLine.addStage(deployStage);
+    const deploymentGroup = new ServerDeploymentGroup(this, 'book-search-dg', {
+      application: app,
+      deploymentGroupName: 'book-search-dg',
+      deploymentConfig: ServerDeploymentConfig.ALL_AT_ONCE,
+      onPremiseInstanceTags: new InstanceTagSet({
+        [EC2_TAG_NAME]: [EC2_TAG_VALUE]
+      }),
+      installAgent: true,
+    });
+
+    const codePipeline = new Pipeline(this, 'PIPELINE', {
+      pipelineName: 'BOOK_SEARCH',
+    });
+
+    // adds source stage and it's action
+    const githubArtifact = new Artifact();
+
+    const githubAction = new GitHubSourceAction({
+      actionName: 'Github_Source',
+      owner: 'takshch',
+      repo: 'book-search',
+      oauthToken: SecretValue.secretsManager('github-token'),
+      output: githubArtifact,
+      branch: 'main',
+    });
+
+    codePipeline.addStage({
+      stageName: 'source',
+      actions: [githubAction]
+    });
+
+    // adds deployment stage and it's
+    const deployAction = new CodeDeployServerDeployAction({
+      actionName: 'Deploy',
+      input: githubArtifact,
+      deploymentGroup
+    });
+
+    codePipeline.addStage({
+      stageName: 'deploy',
+      actions: [deployAction]
+    });
   }
 }
