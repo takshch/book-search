@@ -16,11 +16,14 @@ export class InfrastructureStack extends Stack {
 
     const defaultVpc = ec2.Vpc.fromLookup(this, 'VPC', { isDefault: true });
 
-    const EC2_DYNAMODB_ROLE = new iam.Role(this, 'EC2_ROLE', {
+    const EC2_ROLE = new iam.Role(this, 'EC2_ROLE', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
       description: 'EC2 instance with full DynamoDB access',
       managedPolicies: [
-        iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonDynamoDBFullAccess')
+        iam.ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess'),
+        iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonS3FullAccess'),
+        iam.ManagedPolicy.fromAwsManagedPolicyName('AWSCodeDeployFullAccess'),
+        iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonDynamoDBFullAccess'),
       ]
     });
 
@@ -44,7 +47,7 @@ export class InfrastructureStack extends Stack {
 
     const ec2Instance = new ec2.Instance(this, 'ec2-instance', {
       vpc: defaultVpc,
-      role: EC2_DYNAMODB_ROLE,
+      role: EC2_ROLE,
       securityGroup: EC2_SecurityGroup,
       instanceName: 'ec2-instance',
       instanceType: ec2.InstanceType.of(
@@ -94,7 +97,7 @@ export class InfrastructureStack extends Stack {
       actions: [githubAction]
     });
 
-    // adds deployment stage and it's
+    // adds deployment stage and it's action
     const deployAction = new CodeDeployServerDeployAction({
       actionName: 'Deploy',
       input: githubArtifact,
