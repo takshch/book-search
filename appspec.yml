@@ -2,7 +2,7 @@ version: 0.0
 os: linux
 files:
   - source: /
-    destination: /root/server
+    destination: /server
 hooks:
   BeforeInstall:
     - location: /hooks_scripts/before-install.sh
