@@ -1,8 +1,8 @@
 #!/bin/bash
 
-sudo chmod -R 777 /home/ubuntu/server
+sudo chmod -R 777 $HOME/server
 
-cd "/home/ubuntu/server/Ember.js + Firebase/client"
+cd "$HOME/server/Ember.js + Firebase/client"
 
 npm install
 npm rebuild node-sass
