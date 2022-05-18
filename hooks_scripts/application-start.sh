@@ -8,5 +8,5 @@ npm install
 npm rebuild node-sass
 
 npm run build
-sudo pm2 serve dist 80 --spa
+pm2 serve dist 80 --spa
 pm2 save
