@@ -1,8 +1,8 @@
 version: 0.0
 os: linux
 files:
-  - source: /
-    destination: /server
+  - source: "/Ember.js + Firebase"
+    destination: /home/ec2-user/server
 hooks:
   BeforeInstall:
     - location: /hooks_scripts/before-install.sh
