@@ -67,7 +67,7 @@ export class InfrastructureStack extends Stack {
       application: app,
       deploymentGroupName: 'book-search-dg',
       deploymentConfig: ServerDeploymentConfig.ALL_AT_ONCE,
-      onPremiseInstanceTags: new InstanceTagSet({
+      ec2InstanceTags: new InstanceTagSet({
         [EC2_TAG_NAME]: [EC2_TAG_VALUE]
       }),
       installAgent: true,
