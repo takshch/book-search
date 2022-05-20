@@ -21,7 +21,6 @@ export class InfrastructureStack extends Stack {
         iam.ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess'),
         iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonS3FullAccess'),
         iam.ManagedPolicy.fromAwsManagedPolicyName('AWSCodeDeployFullAccess'),
-        iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonDynamoDBFullAccess'),
       ]
     });
 
