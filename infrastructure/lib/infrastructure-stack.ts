@@ -16,7 +16,7 @@ export class InfrastructureStack extends Stack {
 
     const EC2_ROLE = new iam.Role(this, 'EC2_ROLE', {
       assumedBy: new iam.ServicePrincipal('ec2.amazonaws.com'),
-      description: 'EC2 instance with full DynamoDB access',
+      description: 'EC2 instance with admin, s3, codedeploy access',
       managedPolicies: [
         iam.ManagedPolicy.fromAwsManagedPolicyName('AdministratorAccess'),
         iam.ManagedPolicy.fromAwsManagedPolicyName('AmazonS3FullAccess'),
@@ -84,7 +84,7 @@ export class InfrastructureStack extends Stack {
       actionName: 'Github_Source',
       owner: 'takshch',
       repo: 'book-search',
-      oauthToken: SecretValue.secretsManager('github-token'),
+      oauthToken: SecretValue.secretsManager('git-token'),
       output: githubArtifact,
       branch: 'main',
     });
